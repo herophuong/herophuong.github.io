@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <meta name="theme-color" content="#558B2F">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <title>I am Le Phuong</title>
 </head>
 <body>
-WIP
+    <div id="container" class="bg-green">
+        <div id="text-logo">
+            <div class="text">L</div>
+            <div class="text">E</div>
+            <div class="space"></div>
+            <div class="text">P</div>
+            <div class="text">H</div>
+            <div class="text">U</div>
+            <div class="text">O</div>
+            <div class="text">N</div>
+            <div class="text">G</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    (function() {
+        var container = document.getElementById('container'),
+            bg_transition_time = 5000,
+            colors = ['blue', 'purple', 'red', 'orange', 'yellow', 'green'],
+            texts = document.getElementsByClassName('text');
+        texts[texts.length - 1].addEventListener("animationend", function handler() {
+            // Revolving between color
+            setInterval(function() {
+                container.className = 'bg-' + colors[0];
+                colors.push(colors.shift());
+            }, bg_transition_time);
+            // Start scaling texts
+            for (var i = 0; i < texts.length; i++) {
+                texts[i].className = texts[i].className + ' scale';
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
