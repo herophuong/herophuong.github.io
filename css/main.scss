@@ -157,19 +157,28 @@ a {
 .lang-wrapper {
   position: relative;
 }
+
 .lang-content.ng-enter {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s cubic-bezier(.55, 0, .1, 1);
+  transition: opacity .5s cubic-bezier(.55, 0, .1, 1);
+}
+.call-to-action .lang-content {
+  display: inline-block;
+  white-space: nowrap;
+}
+.call-to-action .lang-content.ng-enter {
+  top: 8px;
+  left: 16px;
 }
 .lang-content.ng-enter.ng-enter-active {
   opacity: 1;
 }
 .lang-content.ng-leave {
   opacity: 1;
-  transition: opacity 1s cubic-bezier(.55, 0, .1, 1);
+  transition: opacity .5s cubic-bezier(.55, 0, .1, 1);
 }
 .lang-content.ng-leave.ng-leave-active {
   opacity: 0;

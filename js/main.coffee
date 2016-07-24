@@ -7,13 +7,16 @@ do ->
         this.data =
             en:
                 name: "PHUONG LE HOANG",
-                position: "WEB DEVELOPER"
+                position: "WEB DEVELOPER",
+                callToAction: "CONTACT ME"
             vi:
                 name: "LÊ HOÀNG PHƯƠNG",
-                position: "NHÀ PHÁT TRIỂN WEB"
+                position: "NHÀ PHÁT TRIỂN WEB",
+                callToAction: "LIÊN HẸ"
             ja:
                 name: "レ　ホアン　フォン"
                 position: "ウェブ開発者"
+                callToAction: "メールを送る"
             
         this.active = "en"
     ]
@@ -29,4 +32,24 @@ do ->
                 ripple.addEventListener "animationend", (event) ->
                     ripple.remove()
                 angular.element(document.getElementById("card")).append ripple
+    ]
+    
+    app.animation ".lang-content", ["$animateCss", ($animateCss) ->
+        enter: (element) ->
+            parent = element.parent()
+            sibling = element.siblings()
+            $animateCss parent,
+                from:
+                    width: sibling.width()
+                    height: sibling.height()
+                to:
+                    width: element.width()
+                    height: element.height()
+                transitionStyle: '.5s cubic-bezier(.55, 0, .1, 1) all'
+            .start().done ->
+                parent.css 'width', ''
+                parent.css 'height', ''
+            $animateCss element, {event: "enter", structural: true}
+        leave: (element) ->
+            $animateCss element, {event: "leave", structural: true}
     ]

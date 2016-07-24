@@ -1,0 +1,23 @@
+{
+  "name": "lephuong.me",
+  "homepage": "lephuong.me",
+  "authors": [
+    "Lê Hoàng Phương <herophuong93@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular": "^1.5.8",
+    "jquery": "^3.1.0"
+  }
+}
