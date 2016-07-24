@@ -1,97 +1,176 @@
 html, body {
   height: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
 }
-$background-animation-time: 5s;
-$bezier: cubic-bezier(.5, 0, .1, 1);
+
+body {
+  background: url('../img/background.jpg');
+  background-size: cover;
+}
 
 #container {
   height: 100%;
   display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
   justify-content: center;
-  animation: fadebackgroundtogreen $background-animation-time $bezier;
-  transition: background-color $background-animation-time $bezier;
+  align-items: center;
 }
-#text-logo {
-  color: #FFFFFF;
-  font-size: 2em;
-  font-weight: 100;
+
+$primary-color: #7CB342;
+
+a {
+  color: $primary-color;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#card {
+  height: 50%;
+  width: 70%;
+  background-color: #ffffff;
+  color: $primary-color;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+  padding: 16px;
   display: flex;
-  flex-direction: row;
-  transition: .3s all;
-
-  .text {
-    opacity: 0;
-    animation-duration: $background-animation-time;
-    animation-timing-function: $bezier;
-    animation-fill-mode: forwards;
-    animation-delay: $background-animation-time / 3;
-
-    $step: 0.1;
-    &:nth-child(even) { animation-name: fadeinfrombottom; }
-    &:nth-child(odd) { animation-name: fadeinfromtop; }
-    &.scale {
-      opacity: 1;
-      padding: 0 .1em;
-      transform: scale(1);
-      animation-name: scaletext;
-      animation-iteration-count: infinite;
-      animation-fill-mode: none;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  
+  .card-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    .lang-switcher {
+      $size: 36px;
+      width: $size;
+      height: $size;
+      line-height: $size;
+      border-radius: 50%;
+      border: 2px solid $primary-color;
+      text-align: center;
+      text-transform: capitalize;
+      margin: 0 6px;
+      background-color: #ffffff;
+      padding: 0;
+      color: $primary-color;
+      font-size: .9em;
+      cursor: pointer;
+      outline: none;
+      
+      
+      &:hover {
+        border-color: lighten($primary-color, 5%);
+        color: lighten($primary-color, 5%);
+      }
+      
+      &.active {
+        background-color: $primary-color;
+        color: #fff;
+        &:hover {
+          background-color: lighten($primary-color, 5%);
+        }
+      }
     }
-    &:nth-child(2) { animation-delay: $background-animation-time / 3 + $step; }
-    &:nth-child(3) { animation-delay: $background-animation-time / 3 + $step * 2; }
-    &:nth-child(4) { animation-delay: $background-animation-time / 3 + $step * 3; }
-    &:nth-child(5) { animation-delay: $background-animation-time / 3 + $step * 4; }
-    &:nth-child(6) { animation-delay: $background-animation-time / 3 + $step * 5; }
-    &:nth-child(7) { animation-delay: $background-animation-time / 3 + $step * 6; }
-    &:nth-child(8) { animation-delay: $background-animation-time / 3 + $step * 7; }
-    &:nth-child(9) { animation-delay: $background-animation-time / 3 + $step * 8; }
   }
-  .space {
-    width: 1em;
+  
+  .card-body {
+    padding: 24px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    
+    .info {
+      flex: 0 0 60%;
+      
+      .info-position {
+        font-weight: 300;
+      }
+      .info-name {
+        position: relative;
+        font-size: 2.5em;
+        font-weight: 700;
+        color: rgba(0, 0, 0, .5);
+      }
+      .info-intro {
+        color: rgba(0, 0, 0, .5);
+      }
+    }
+    a.call-to-action {
+      margin: 8px 0;
+      padding: 8px 16px;
+      border-radius: 2px;
+      background-color: $primary-color;
+      color: #FFFFFF;
+      font-weight: 300;
+      display: inline-block;
+      transition: all .2s;
+      
+      &:hover {
+        // background-color: lighten($primary-color, 5%);
+        box-shadow: 0 1px 5px 0 rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12);
+      }
+    }
+    .avatar {
+      
+    }
+  }
+  
+  .card-footer {
+    a {
+      padding: 0px 8px;
+    }
+  }
+  
+  span.highlight {
+    color: $primary-color;
   }
 }
-.bg-green { background-color: #558B2F; }
-.bg-blue { background-color: #0D47A1; }
-.bg-purple { background-color: #6A1B9A; }
-.bg-red { background-color: #C62828; }
-.bg-orange { background-color: #E65100; }
-.bg-yellow { background-color: #F57F17;}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: $primary-color;
+  pointer-events: none;
+
+  animation: ripple-animation 1s cubic-bezier(.55, 0, .1, 1);
+  animation-fill-mode: forwards;
+}
 
 
-@keyframes fadebackgroundtogreen {
-  0% { background-color: #FFFFFF; }
-  100% { background-color: #558B2F; }
-}
-@keyframes fadeinfrombottom {
-  0% { opacity: 0; transform: translateY(2em); padding: 0; }
-  100% { opacity: 1; transform: translateY(0px); padding: 0 .1em; }
-}
-@keyframes fadeinfromtop {
-  0% { opacity: 0; transform: translateY(-2em); padding: 0; }
-  100% { opacity: 1; transform: translateY(0px); padding: 0 .1em; }
-}
-@keyframes scaletext {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+@keyframes ripple-animation {
+    from {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    to {
+      transform: scale(100);
+      opacity: 0;
+    }
 }
 
-@media screen and (min-width: 480px) {
-  #text-logo { font-size: 3em; }
+.lang-wrapper {
+  position: relative;
 }
-@media screen and (min-width: 600px) {
-  #text-logo { font-size: 4em; }
+.lang-content.ng-enter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(.55, 0, .1, 1);
 }
-@media screen and (min-width: 960px) {
-  #text-logo { font-size: 5em; }
+.lang-content.ng-enter.ng-enter-active {
+  opacity: 1;
 }
-@media screen and (min-width: 1280px) {
-  #text-logo { font-size: 7em; }
+.lang-content.ng-leave {
+  opacity: 1;
+  transition: opacity 1s cubic-bezier(.55, 0, .1, 1);
+}
+.lang-content.ng-leave.ng-leave-active {
+  opacity: 0;
 }
